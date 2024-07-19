@@ -1,0 +1,613 @@
+html {
+    font-family: "OpenSans", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    color: black;
+    font-size: 15px;
+    height: 100%;
+    background-color: white;
+    font-weight: normal;
+}
+.main-body {
+    min-height: 100%;
+    min-width:1200px;
+    display: -ms-grid;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 70px 50px 1fr;
+    grid-template-areas: "top" "nav" "content";
+    transition: grid-template-columns 0.5s;
+}
+.main-body > main {
+    grid-area: content;
+    padding: 10px;
+    background-color: lightgrey;
+}
+.main-body > .nav {
+    background-color: greenyellow;
+    grid-area: nav;
+    padding: 5px;
+    padding-top: 13px;
+    text-align: center;
+}
+.main-body > .nav a {
+    padding: 10px;
+    text-decoration: none;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+.main-body > .nav span {
+    color: darkgreen;
+}
+.main-body > header {
+    background-color: white;
+    grid-area: top;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 20px;
+}
+.main-body > header .account {
+    display: flex;
+    align-items: center;
+}
+.main-body > header button#logout {
+    font-size:20px;
+}
+.bread-crumbs > span,
+.bread-crumbs > span > a {
+    color: white;
+    font-size: 18px;
+    text-transform: uppercase;
+    line-height: 70px;
+    font-weight: bold;
+    text-decoration:none;
+}
+.bread-crumbs > a:hover {
+    color: darkgreen;
+}
+.company-logo h1 {
+    grid-column: 2 / 3;
+    text-transform: capitalize;
+    font-size: 20px;
+    font-weight:lighter;
+    margin: 0;
+    font-size: 16px;
+}
+.company-logo .bold {
+    grid-column: 3 / 4;
+    text-transform: uppercase;
+    color: green;
+    font-weight: bold;
+}
+.user-wrapper {
+    display:flex;
+    align-items:center;
+}
+.user-wrapper .user {
+    margin-right: 10px;
+
+}
+.user-wrapper .user .change-password{
+    display: inline-block;
+    background-color: whitesmoke;
+    text-decoration: none;
+    color: black;
+}
+.user .change-password, .log-out{
+    font-size: 15px;
+    padding: 5px;
+}
+.user span{
+    color: greenyellow;
+}
+.user-wrapper .user .role{
+    display: none;
+}
+.sign-out button {
+    background-color: whitesmoke;
+    color: black;
+    cursor: pointer;
+    border-radius: 10px;
+}
+.sign-out button:hover {
+    color: red;
+}
+.main-body > nav > a {
+    display: grid;
+    grid-template-columns: 35px 1fr;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    padding: 18px 0 18px 25px;
+    text-transform: capitalize;
+}
+.main-body > nav  a:hover{
+    /* padding-left: 23px; */
+    color: yellow;
+}
+.create-button {
+    margin-left: 15px;
+}
+.filter {
+    padding:15px;
+}
+.filter input,select[name=cari-tahun],button{
+    padding: 9px;
+    border-radius: 10px;
+    border: solid 2px lightgreen;;
+}
+.grid-container {
+    background-color: white;
+    border-radius: 12px;
+}
+.grid-container h2{
+    color: green;
+    padding-top: 13px;
+    padding-left: 18px;
+    margin: 0;
+}
+.grid-container.dashboard {
+    background-color: white;
+    border-radius: 12px;
+    text-align: center;
+    height: 98%;
+    padding: 5px;
+}
+.grid-container table {
+    width: 98%;
+    text-align: center;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin: 12px;
+}
+.grid-container table i{
+    font-size: 15px;
+}
+.grid-container thead > tr {
+    background-color: whitesmoke;
+    border-bottom: #3a466c solid 1px;
+}
+.grid-container th {
+    padding: 10px;
+    text-transform: capitalize;
+    font-weight: bold;
+    color: black;
+}
+.grid-container tbody > tr {
+    border-bottom: #3a466c solid 1px;
+    /* text-align: left; */
+}
+.grid-container tbody td {
+    padding: 10px;
+}
+.grid-container tbody > tr:nth-child(even) {
+    background-color: lightcyan;
+}
+.grid-container tfoot td{
+    padding:15px;
+    font-weight: bold;
+}
+.pagination {
+    display: flex;
+    justify-content: space-between;
+}
+.pagination a {
+    color: black;
+    border: solid 1px lightgreen;
+    display: inline-block;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border-radius: 4px;
+    text-decoration:none;
+    margin-right:3px;
+}
+.pagination a:hover{
+    color: red;
+    background-color:whitesmoke;
+}
+.pagination a:last-child{
+	margin-right:0;
+}
+.search-button{
+    cursor: pointer;
+    border: solid;
+    display: inline-block;
+    height: 37px;
+    line-height: 30px;
+    padding: 0px 30px;
+    text-transform: uppercase;
+    color: green;
+    border-radius: 25px;
+    text-align: center;
+    font-weight: bold;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    text-decoration: none;
+    background-color: white;
+}
+.search-button:hover{
+    background-color:whitesmoke;
+}
+.blue-button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    padding: 0px 8px;
+    text-transform: uppercase;
+    color: white;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+.blue-button:hover{
+    color:yellow
+}
+.blue-button.create-button, 
+.blue-button.update-button{
+    background-color: green;
+}
+.blue-button#add, 
+.blue-button#edit, 
+.blue-button#confirm-delete, 
+.blue-button.note-button,
+.blue-button.valid-button{
+    background-color: blue;
+}
+.blue-button#close, 
+.blue-button#close-success, 
+.blue-button.delete-button, 
+.blue-button#cancel, 
+.blue-button#close-note,
+.blue-button#close-soon, 
+.blue-button#close-picture{
+    background-color: red;
+}
+
+.upsert-form {
+    background-color: white;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 4px;
+    padding: 20px;
+}
+.upsert-form table{
+    font-size: 20px;
+    padding: 15px;
+}
+.upsert-form .buttons, 
+.modal-layer#delete .delete-confirm-button, 
+.modal-layer#success .success-button,
+.modal-layer#notes .delete-note-button,
+.modal-layer#soon .close-soon-button,
+.modal-layer#picture .picture-button{
+    display: flex;
+    justify-content: center;
+}
+.upsert-form table  input, select{
+    padding: 7px;
+}
+.upsert-form .blue-button, 
+.modal-layer#delete .blue-button{
+    font-size: 18px;
+    padding: 2px 25px;
+    margin: 10px;
+}
+.upsert-form td {
+    padding-bottom:15px;
+}
+.upsert-form tr td:first-child {
+    padding-right: 20px;
+}
+
+.authentication-body {
+    min-height: 100%;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+.authentication-wrapper > header {
+    justify-content: center;
+    display: grid;
+    grid-template-columns: 50px 190px;
+    grid-template-rows: 1fr;
+    align-items: flex-end;
+}
+.authentication-wrapper > main {
+    background-color: lightgreen;
+    padding: 40px;
+    margin-top: 15px;
+    border-radius: 6px;
+    display: grid;
+    grid-template-columns: 1fr;
+    min-width: 330px;
+    justify-content: center;
+    text-align: center;
+}
+.authentication-wrapper > main > h1 {
+    margin: 0 0 15px 0;
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: 18px;
+}
+.authentication-wrapper > main form {
+    display: grid;
+    margin: 25px 0 25px 0;
+}
+.modal-layer{
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background-color: rgba(0, 0, 0, 0.5);
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+}
+.popup-dialog {
+    display: none;
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    min-width: 300px;
+}
+.modal-layer#picture > .popup-dialog img {
+    width: 700px; 
+    height: 500px; 
+}
+.room-info .readonly-text{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    cursor: default;
+}
+.field-validation-error, .salah {
+    display: inline-block;
+    box-sizing: border-box;
+    color: white;
+    background: linear-gradient(to right, #f84646, #d52c2f);
+    vertical-align: middle;
+    line-height: 30px;
+    padding: 0 12px;
+    border-radius: 4px;
+    margin-left:5px;
+}
+
+
+.authentication-body {
+    min-height: 100%;
+    display: grid;
+    justify-content: center;
+    background-color: lightgrey;
+    align-content: center;
+}
+.authentication-wrapper > header {
+    display: flex;
+    /* grid-template-columns: 50px 190px; */
+    /* grid-template-rows: 1fr; */
+    justify-content: center;
+    margin-bottom: 2px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    background-color: white;
+    border-radius: 10px;
+}
+.authentication-wrapper .company-logo img {
+    height: 40px;
+}
+.authentication-wrapper .company-logo h1 {
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.authentication-wrapper > main {
+    background-color: white;
+    padding: 40px;
+    margin-top: 10px;
+    border-radius: 19px;
+    display: grid;
+    grid-template-columns: 1fr;
+    min-width: 330px;
+    justify-content: center;
+    text-align: center;
+}
+.authentication-wrapper > main > h1 {
+    margin: 0 0 0px 0;
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: 30px;
+}
+.authentication-wrapper > main form {
+    display: grid;
+    margin: 25px 0 25px 0;
+}
+.authentication-wrapper > main input {
+    display: block;
+    border: 2px solid;
+    outline: none;
+    color: green;
+    background-color: WHITE;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.authentication-wrapper > main button {
+    background: linear-gradient(to right, #1bf87b, #0fda49);
+    color: white;
+    cursor: pointer;
+    text-transform: uppercase;
+    border: none;
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+.authentication-wrapper > main a {
+    color: #14acf8;
+    line-height: 28px;
+    font-size: 14px;
+}
+.authentication-wrapper > main select {
+    width: 100%;
+    margin: 10px 0;
+    height: 40px;
+    display: block;
+}
+
+
+@media screen and (max-width: 500px) {
+    .main-body{
+        min-height: 100%;
+        min-width: 350px;
+        display: -ms-grid;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 61px 50px 1fr;
+        grid-template-areas: "top"
+                "nav"
+                "content";
+        /* font-size: large; */
+        font-size: smaller;
+    }
+    .main-body > .nav a{
+        padding: 15px;
+        text-decoration: none;
+        font-size: 15px;
+        text-transform: uppercase;
+    }
+    .main-body  > header{
+        background-color: white;
+        grid-area: top;
+        display: flex;
+        justify-content: space-between;
+        padding: 0px 15px;
+        font-size: 10px;
+    }
+    .main-body > header button#logout{
+        font-size: 12px;
+    }
+    .grid-container table{
+        width: 95%;
+        text-align: center;
+        border-collapse: collapse;
+        font-size: 15px;
+        margin: 12px;
+    }
+    thead{
+        display: none;
+    }
+
+    tbody>tr {
+        border: 3px solid;
+        display:block;
+    }
+    
+    tbody>tr>td{
+        display: flex;
+        /* justify-content: space-between; */
+        gap: 5px;
+    }
+
+    .grid-container tbody td{
+        padding: 2px;
+    }
+    tbody>tr>td>button:nth-child(1), tbody>tr>td>button:nth-child(2){
+        width: 45%;
+        margin: 0 20px;
+    }
+
+    tbody>tr>td:nth-child(2)::before{
+        content: "Nama: ";
+    }
+    
+    tbody>tr>td:nth-child(3)::before{
+        content: "Alamat: ";
+    }
+
+    tbody>tr>td:nth-child(4)::before{
+        content: "Jumlah Jiwa: ";
+    }
+
+    tbody>tr>td:nth-child(5)::before{
+        content: "Fitrah(Uang): ";
+    }
+    
+    tbody>tr>td:nth-child(6)::before{
+        content: "Fitrah(Beras): ";
+    }
+
+    tbody>tr>td:nth-child(7)::before{
+        content: "Fidiya(Uang): ";
+    }
+
+    tbody>tr>td:nth-child(8)::before{
+        content: "Fidiya(Beras): ";
+    }
+
+    tbody>tr>td:nth-child(9)::before{
+        content: "infaq(Uang): ";
+    }
+
+    tbody>tr>td:nth-child(10)::before{
+        content: "infaq(Beras): ";
+    }
+
+    tbody>tr>td:nth-child(11)::before{
+        content: "Maal: ";
+    }
+
+    tbody>tr>td:nth-child(12)::before{
+        content: "Tanggal: ";
+    }
+
+    tbody>tr>td:nth-child(13)::before{
+        content: "Amil: ";
+    }
+
+
+    .filter {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+    .filter input{
+        padding: 10px;
+        border-radius: 10px;
+        border: solid 2px lightgreen;
+        margin-bottom: 10px;
+        width: 140px;
+    }
+    .filter select{
+        padding: 7px;
+        width: 162px;
+        margin-bottom: 10px;
+    }
+    .search-button{
+        cursor: pointer;
+        border: solid;
+        display: inline-block;
+        height: 37px;
+        line-height: 30px;
+        padding: 0px 30px;
+        text-transform: uppercase;
+        color: green;
+        border-radius: 25px;
+        text-align: center;
+        font-weight: bold;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        text-decoration: none;
+        background-color: white;
+        width: 140px;
+    }
+}

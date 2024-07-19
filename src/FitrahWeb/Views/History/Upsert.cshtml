@@ -1,0 +1,80 @@
+@model HistoryUpsertViewModel
+@if(Model!=null){
+		<form method="post" class="upsert-form" action="">
+			<table>
+				<tr>
+					<td><label >Nama</label></td>
+					<td><input asp-for="@Model.MuzakkiName" type="text" placeholder="Nama Muzakki...">
+						<div class="field-validation-error">
+								<span asp-validation-for="@Model.MuzakkiName"></span>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><label>Alamat</label></td>
+					<td><input asp-for="@Model.Address" type="text" placeholder="RT/RW..." >
+						<div class="field-validation-error">
+								<span asp-validation-for="@Model.Address"></span>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><label >Jumlah Jiwa</label></td>
+					<td><input asp-for="@Model.Quantity" type="number" min="1"  placeholder="Jumlah Jiwa..." ></td>
+				</tr>
+				<tr>
+					<td><label >Tanggal</label></td>
+					<td><input asp-for="@Model.Date" type="date" placeholder="Tanggal..." >
+					</td>
+				</tr>
+				<tr>
+					<td><label>Zakat Fitrah</label></td>
+					<td>				
+						<input asp-for="@Model.FitrahMoney" type="text" placeholder="Uang(Rp)">
+               			<input asp-for="@Model.FitrahRice" type="text" placeholder="Beras (xx.xx liter)">
+					</td>
+				</tr>
+				<tr>
+					<td><label>Fidiyah</label></td>
+					<td>				
+						<input asp-for="@Model.FidiyaMoney" type="text" placeholder="Uang(Rp)">
+						<input asp-for="@Model.FidiyaRice" type="text" placeholder="Beras (xx.xx liter)">
+					</td>
+				</tr>
+				<tr>
+					<td><label >Infaq/Shodaqoh</label></td>
+					<td>				
+						<input asp-for="@Model.InfaqMoney" type="text" placeholder="Uang(Rp)">
+						<input asp-for="@Model.InfaqRice" type="text" placeholder="Beras (xx.xx liter)">
+					</td>		
+				</tr>
+				<tr>
+					<td><label >Zakat Maal</label></td>
+					<td><input asp-for="@Model.MaalMoney" type="text" placeholder="Uang(Rp)"></td>
+				</tr>
+				<tr>
+					<td><label>Amil</label></td>
+					<td>
+						<select asp-for="@Model.AmilUsername">
+							<option value="">Pilih Amil</option>
+							@foreach(var amil in Model.Amils){
+                				<option value="@amil.Value">@amil.Text</option>
+            				}
+						</select>
+						<div class="field-validation-error">
+								<span asp-validation-for="@Model.AmilUsername"></span>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><label>Catatan</label></td>
+					<td><input asp-for="@Model.Note" type="text" placeholder="Catatan"></td>
+				</tr>
+			</table>
+			<div class="buttons">
+				<button class="blue-button" id="add" type="submit">Simpan</button>
+				<a class="blue-button" asp-controller="History" asp-action="Index" id="close">Batal</a>
+			</div>
+		</form>
+}
+

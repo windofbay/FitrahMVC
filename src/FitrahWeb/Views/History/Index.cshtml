@@ -1,0 +1,88 @@
+@model HistoryIndexViewModel
+<div class="grid-container history">
+	<h2>Riwayat</h2>
+	<form method="get" class="filter" asp-action="Get">
+		<input asp-for="@Model.Name"  placeholder="Nama...">
+        <input asp-for="@Model.Address" placeholder="Alamat(RT/RW)...">
+        <select asp-for="@Model.Year">
+            <option value="">No Specific Year</option>
+            @foreach(var year in Model.Years){
+                <option value="@year.Value">@year.Text</option>
+            }
+        </select>
+		<button class="search-button" type="submit">Cari</button>
+	</form>
+	
+	<a class="blue-button create-button" asp-action="Insert" >Tambah Riwayat Baru</a>
+	<table>
+		<thead>
+			<th></th>
+			<th>Nama</th>
+			<th>Alamat</th>
+            <th>Jumlah Jiwa</th>
+            <th>Fitrah(Uang)</th>
+            <th>Fitrah(Beras)</th>
+            <th>Fidiyah(Uang)</th>
+            <th>Fidiyah(Beras)</th>
+            <th>Infaq/Shodaqoh(Uang)</th>
+            <th>Infaq/Shodaqoh(Beras)</th>
+            <th>Maal</th>
+            <th>Tanggal</th>
+            <th>Amil</th>
+		</thead>
+        @{
+            if(@Model!=null){
+                <tbody>
+                    @foreach(var history in Model.Histories){
+                        <tr>
+                            <td>
+                                <a asp-action="Edit" asp-route-code="@history.Code" class="blue-button update-button">Edit</a>
+                            </td>
+                            <td>@history.MuzakkiName</td>
+                            <td>@history.Address</td>
+                            <td>@history.Quantity</td>
+                            <td>@history.FitrahMoney</td>
+                            <td>@history.FitrahRice</td>
+                            <td>@history.FidiyaMoney</td>
+                            <td>@history.FidiyaRice</td>
+                            <td>@history.InfaqMoney</td>
+                            <td>@history.InfaqRice</td>
+                            <td>@history.MaalMoney</td>
+                            <td>@history.Date</td>
+                            <td>@history.AmilUsername</td>
+                        </tr>
+                    }
+                </tbody>
+            } else {
+                <tr>    
+                    <td colspan="13"></td>
+                </tr>
+            }
+        }
+
+		<tfoot>
+            <tr>
+                <td colspan="13">
+                    <div class="pagination">
+                        <span>Halaman @Model.Pagination.Page dari @Model.Pagination.TotalPages </span>
+                        <div>
+                            &lt;
+                            @for(int pageNumber=1; pageNumber<=Model.Pagination.TotalPages; pageNumber++){
+								<a 
+								asp-action="Index" 
+								asp-route-page="@pageNumber" 
+								asp-route-name="@Model.Name"
+                                asp-route-address = "@Model.Address"
+                                asp-route-year = "@Model.Year"
+								>
+									@pageNumber
+								</a>
+                            }
+                            &gt;
+                        </div>
+                    </div>
+                </td>
+            </tr>
+		</tfoot>
+	</table>
+</div>

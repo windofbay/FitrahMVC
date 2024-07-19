@@ -1,0 +1,28 @@
+@{
+    Layout = "_layoutLogin";
+}
+@model AuthLoginViewModel
+<div class="authentication-wrapper">
+		@* <header class="company-logo">
+			<h1>
+				Baitul Ilmi's <span class="bold">Zakat Fitrah</span>
+			</h1>
+		</header> *@
+        <main>
+			<h1>
+				Baitul Ilmi's <span class="bold">Zakat Fitrah</span>
+			</h1>
+			<form asp-action="Login" method="post">
+				<input asp-for="Username" type="text" placeholder="username" autocomplete="off"/>
+                <div class="field-validation-error">
+					<span asp-validation-for="Username"></span>
+				</div>
+				<input asp-for="Password" type="password" placeholder="password"/>
+                <div class="field-validation-error">
+					<span asp-validation-for="Password"></span>
+				</div>
+                <span class="salah">@ViewBag.Message</span>
+				<button type="submit" id="login">Login</button>
+			</form>
+        </main>
+</div>

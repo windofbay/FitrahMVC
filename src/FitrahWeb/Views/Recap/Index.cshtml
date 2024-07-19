@@ -1,0 +1,67 @@
+@model RecapIndexViewModel
+
+<div class="grid-container recap">
+    <h2>Rekapitulasi</h2>
+    <form method="get" class="filter" asp-action="Get">
+		<select asp-for="@Model.Year" >
+            <option value="">No Specific Year</option>
+            @foreach(var year in Model.Years){
+                <option value="@year.Value">@year.Text</option>
+            }
+        </select>
+		<button class="search-button" type="submit">Cari</button>
+	</form>
+
+    <table>
+		<thead>
+			<th>Tanggal</th>
+            <th></th>
+            <th>Total Jiwa</th>
+            <th>Total Fitrah(Uang)</th>
+            <th>Total Fitrah(Beras)</th>
+            <th>Total Fidiyah(Uang)</th>
+            <th>Total Fidiyah(Beras)</th>
+            <th>Total Infaq/Shodaqoh(Uang)</th>
+            <th>Total Infaq/Shodaqoh(Beras)</th>
+            <th>Total Maal</th>
+        </thead>
+        @{
+            if(@Model!=null){
+                <tbody>
+                    @foreach(var recap in Model.Recaps){
+                        <tr>
+                            <td>@recap.Date</td>
+                            <td></td>
+                            <td>@recap.TotalQuantity</td>
+                            <td>@recap.TotalFitrahMoney</td>
+                            <td>@recap.TotalFitrahRice</td>
+                            <td>@recap.TotalFidiyaMoney</td>
+                            <td>@recap.TotalFidiyaRice</td>
+                            <td>@recap.TotalInfaqMoney</td>
+                            <td>@recap.TotalInfaqRice</td>
+                            <td>@recap.TotalMaalMoney</td>
+                        </tr>
+                    }
+                </tbody>
+            } else {
+                <tr>    
+                    <td colspan="10"></td>
+                </tr>
+            }
+        }
+		<tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>@Model.OverallRecap.OverallQuantity</td>
+                <td>@Model.OverallRecap.OverallFitrahMoney</td>
+                <td>@Model.OverallRecap.OverallFitrahRice</td>
+                <td>@Model.OverallRecap.OverallFidiyaMoney</td>
+                <td>@Model.OverallRecap.OverallFidiyaRice</td>
+                <td>@Model.OverallRecap.OverallInfaqMoney</td>
+                <td>@Model.OverallRecap.OverallInfaqRice</td>
+                <td>@Model.OverallRecap.OverallMaalMoney</td>
+            </tr>
+		</tfoot>
+	</table>
+</div>

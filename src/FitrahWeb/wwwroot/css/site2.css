@@ -1,0 +1,535 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+
+}
+.main-body{
+    background-color: lightgrey;
+}
+.main-body header{
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 18px 20px;
+}
+.main-body > header .account {
+    display: flex;
+    align-items: center;
+}
+.main-body > header button#logout {
+    font-size:20px;
+}
+.user-wrapper {
+    display:flex;
+    align-items:center;
+}
+.user-wrapper .user {
+    margin-right: 10px;
+
+}
+.sign-out button {
+    background-color: whitesmoke;
+    color: black;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 12px;
+    
+}
+.sign-out button:hover {
+    color: red;
+}
+.main-body .nav{
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: greenyellow;
+    overflow-x: auto;
+    height: 50px;
+}
+.main-body > .nav a {
+    padding: 10px;
+    text-decoration: none;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.grid-container.dashboard{
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+.main-body main {
+    background-color: white;
+    border-radius: 8px;
+    margin: 10px;
+}
+.grid-container.history h2, .grid-container.recap h2{
+    padding-top: 10px;
+    padding-left: 17px;
+    margin-top: 12px;
+    margin-bottom: 0px;
+}
+.filter {
+    padding:15px;
+}
+.filter input,select,button{
+    padding: 9px;
+    border-radius: 10px;
+    border: solid 2px lightgreen;;
+}
+.search-button{
+    cursor: pointer;
+    border: solid;
+    display: inline-block;
+    height: 37px;
+    line-height: 30px;
+    padding: 0px 30px;
+    text-transform: uppercase;
+    color: green;
+    border-radius: 25px;
+    text-align: center;
+    font-weight: bold;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    text-decoration: none;
+    background-color: white;
+}
+.search-button:hover{
+    background-color:whitesmoke;
+}
+.blue-button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    padding: 0px 8px;
+    text-transform: uppercase;
+    color: white;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+.blue-button:hover{
+    color:yellow
+}
+.blue-button.create-button{
+    background-color: green;
+    margin-left: 15px;
+}
+.blue-button.update-button{
+    background-color: green;
+}
+.blue-button#add, 
+.blue-button#edit, 
+.blue-button#confirm-delete, 
+.blue-button.note-button,
+.blue-button.valid-button{
+    background-color: blue;
+}
+.blue-button#close, 
+.blue-button#close-success, 
+.blue-button.delete-button, 
+.blue-button#cancel, 
+.blue-button#close-note,
+.blue-button#close-soon, 
+.blue-button#close-picture{
+    background-color: red;
+}
+
+.grid-container table {
+    width: 98%;
+    text-align: center;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin: 12px;
+}
+.grid-container table i{
+    font-size: 15px;
+}
+.grid-container thead > tr {
+    background-color: whitesmoke;
+    border-bottom: #3a466c solid 1px;
+}
+.grid-container th {
+    padding: 10px;
+    text-transform: capitalize;
+    font-weight: bold;
+    color: black;
+}
+.grid-container tbody > tr {
+    border-bottom: #3a466c solid 1px;
+    /* text-align: left; */
+}
+.grid-container tbody td {
+    padding: 10px;
+}
+.grid-container tbody > tr:nth-child(even) {
+    background-color: lightcyan;
+}
+.grid-container tfoot td{
+    padding:15px;
+    font-weight: bold;
+}
+.pagination {
+    display: flex;
+    justify-content: space-between;
+}
+.pagination a {
+    color: black;
+    border: solid 1px lightgreen;
+    display: inline-block;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border-radius: 4px;
+    text-decoration:none;
+    margin-right:3px;
+}
+.pagination a:hover{
+    color: red;
+    background-color:whitesmoke;
+}
+.pagination a:last-child{
+	margin-right:0;
+}
+
+
+
+.upsert-form {
+    background-color: white;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 4px;
+    padding: 20px;
+}
+.upsert-form table{
+    font-size: 20px;
+    padding: 15px;
+}
+.upsert-form .buttons, 
+.modal-layer#delete .delete-confirm-button, 
+.modal-layer#success .success-button,
+.modal-layer#notes .delete-note-button,
+.modal-layer#soon .close-soon-button,
+.modal-layer#picture .picture-button{
+    display: flex;
+    justify-content: center;
+}
+.upsert-form table  input, select{
+    padding: 7px;
+}
+.upsert-form .blue-button, 
+.modal-layer#delete .blue-button{
+    font-size: 18px;
+    padding: 2px 25px;
+    margin: 10px;
+}
+.upsert-form td {
+    padding-bottom:15px;
+}
+.upsert-form tr td:first-child {
+    padding-right: 20px;
+}
+
+.field-validation-error, .salah {
+    display: inline-block;
+    box-sizing: border-box;
+    color: white;
+    background: linear-gradient(to right, #f84646, #d52c2f);
+    vertical-align: middle;
+    line-height: 30px;
+    padding: 0 12px;
+    border-radius: 4px;
+    margin-left:5px;
+}
+
+/* login form */
+.authentication-wrapper{
+    background-color: lightgrey;
+}
+.authentication-wrapper > main {
+    background-color: white;
+    /* margin-left: 10px; */
+    /* margin-right: 10px; */
+    /* margin-top: 50px; */
+    /* margin: 20px; */
+    padding-top: 180px;
+    padding-bottom: 300px;
+}
+
+.authentication-wrapper > main form {
+    margin: 25px 0 25px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    align-items: center;
+}
+.authentication-wrapper > main input {
+    display: block;
+    border: 2px solid;
+    outline: none;
+    color: green;
+    background-color: WHITE;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    min-width: 25%;
+    box-sizing: border-box;
+}
+.authentication-wrapper > main button {
+    background: linear-gradient(to right, #1bf87b, #0fda49);
+    color: white;
+    cursor: pointer;
+    text-transform: uppercase;
+    border: none;
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 10px;
+    min-width: 25%
+}
+
+.authentication-wrapper .company-logo img {
+    height: 40px;
+}
+.authentication-wrapper .company-logo h1 {
+    font-size: 25px;
+    font-weight: normal;
+}
+
+
+/* .authentication-wrapper > main a {
+    color: #14acf8;
+    line-height: 28px;
+    font-size: 14px;
+} */
+/* .authentication-wrapper > main select {
+    width: 100%;
+    margin: 10px 0;
+    height: 40px;
+    display: block;
+} */
+.authentication-wrapper > main .bold{
+    color: #178536;
+}
+.authentication-wrapper > main > h1 {
+    margin: 0 0 15px 0;
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: 40px;
+    text-align: center;
+}
+
+@media screen and (max-width: 700px) {
+    .main-body{
+        min-height: 100%;
+        min-width: 350px;
+        font-size: smaller;
+    }
+    .main-body header{
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 15px;
+    }
+    .main-body .nav a{
+        padding: 10px;
+        text-decoration: none;
+        font-size: 15px;
+        text-transform: uppercase;
+    }
+    .sign-out button{
+        background-color: whitesmoke;
+        color: black;
+        cursor: pointer;
+        border-radius: 10px;
+        padding: 5px;
+    }
+    .filter {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+    .filter input{
+        padding: 10px;
+        border-radius: 10px;
+        border: solid 2px lightgreen;
+        margin-bottom: 10px;
+        width: 140px;
+    }
+    .filter select{
+        padding: 7px;
+        width: 162px;
+        margin-bottom: 10px;
+    }
+    .search-button{
+        cursor: pointer;
+        border: solid;
+        display: inline-block;
+        height: 37px;
+        line-height: 30px;
+        padding: 0px 30px;
+        text-transform: uppercase;
+        color: green;
+        border-radius: 25px;
+        text-align: center;
+        font-weight: bold;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        text-decoration: none;
+        background-color: white;
+        width: 140px;
+    }
+
+    .grid-container table{
+        width: 95%;
+        text-align: center;
+        border-collapse: collapse;
+        margin: 12px;
+        font-size: 11px;
+    }
+    thead{
+        display: none;
+    }
+
+    tbody>tr {
+        border: 3px;
+        display:block;
+    }
+    .grid-container.recap tfoot > tr{
+        border: 3px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    tbody>tr>td{
+        display: flex;
+        gap: 5px;
+    }
+    .upsert-form table tr td{
+        display: flex;
+        gap: 5px;
+        flex-direction: column;
+    }
+
+    .grid-container tbody td{
+        padding: 2px;
+    }
+    .grid-container tfoot td{
+        padding:4px;
+        font-weight: bold;
+    }
+    .grid-container.history tbody>tr>td>button:nth-child(1), tbody>tr>td>button:nth-child(2){
+        width: 45%;
+        margin: 0 20px;
+    }
+
+    .grid-container.history tbody>tr>td:nth-child(2)::before{
+        content: "Nama: ";
+    }
+    
+    .grid-container.history tbody>tr>td:nth-child(3)::before{
+        content: "Alamat: ";
+    }
+
+    .grid-container.history tbody>tr>td:nth-child(4)::before{
+        content: "Jumlah Jiwa: ";
+    }
+
+    .grid-container.history tbody>tr>td:nth-child(5)::before{
+        content: "Fitrah(Uang): ";
+    }
+    
+    .grid-container.history tbody>tr>td:nth-child(6)::before{
+        content: "Fitrah(Beras): ";
+    }
+
+    .grid-container.history tbody>tr>td:nth-child(7)::before{
+        content: "Fidiya(Uang): ";
+    }
+
+    .grid-container.history tbody>tr>td:nth-child(8)::before{
+        content: "Fidiya(Beras): ";
+    }
+
+    .grid-container.history tbody>tr>td:nth-child(9)::before{
+        content: "infaq(Uang): ";
+    }
+
+    .grid-container.history tbody>tr>td:nth-child(10)::before{
+        content: "infaq(Beras): ";
+    }
+
+    .grid-container.history tbody>tr>td:nth-child(11)::before{
+        content: "Maal: ";
+    }
+
+    .grid-container.history tbody>tr>td:nth-child(12)::before{
+        content: "Tanggal: ";
+    }
+
+    .grid-container.history tbody>tr>td:nth-child(13)::before{
+        content: "Amil: ";
+    }
+    .grid-container.recap tbody>tr>td:nth-child(1)::before{
+        content: "Tanggal: ";
+    }
+    .grid-container.recap tbody>tr>td:nth-child(3)::before{
+        content: "Total Jiwa: ";
+    }
+    .grid-container.recap tbody>tr>td:nth-child(4)::before{
+        content: "Total Fitrah(Uang): ";
+    }
+    .grid-container.recap tbody>tr>td:nth-child(5)::before{
+        content: "Total Fitrah(Beras): ";
+    }
+    .grid-container.recap tbody>tr>td:nth-child(6)::before{
+        content: "Total Fidiya(Uang): ";
+    }
+    .grid-container.recap tbody>tr>td:nth-child(7)::before{
+        content: "Total Fidiya(Beras): ";
+    }
+    .grid-container.recap tbody>tr>td:nth-child(8)::before{
+        content: "Total Infaq(Uang): ";
+    }
+    .grid-container.recap tbody>tr>td:nth-child(9)::before{
+        content: "Total Infaq(Beras): ";
+    }
+    .grid-container.recap tbody>tr>td:nth-child(10)::before{
+        content: "Total Maal: ";
+    }
+
+    .grid-container.recap tfoot>tr>td:nth-child(3)::before{
+        content: "Keseluruhan Jiwa: ";
+    }
+    .grid-container.recap tfoot>tr>td:nth-child(4)::before{
+        content: "Keseluruhan Fitrah(Uang): ";
+    }
+    .grid-container.recap tfoot>tr>td:nth-child(5)::before{
+        content: "Keseluruhan Fitrah(Beras): ";
+    }
+    .grid-container.recap tfoot>tr>td:nth-child(6)::before{
+        content: "Keseluruhan Fidiya(Uang): ";
+    }
+    .grid-container.recap tfoot>tr>td:nth-child(7)::before{
+        content: "Keseluruhan Fidiya(Beras): ";
+    }
+    .grid-container.recap tfoot>tr>td:nth-child(8)::before{
+        content: "Keseluruhan Infaq(Uang): ";
+    }
+    .grid-container.recap tfoot>tr>td:nth-child(9)::before{
+        content: "Keseluruhan Infaq(Beras): ";
+    }
+    .grid-container.recap tfoot>tr>td:nth-child(10)::before{
+        content: "Keseluruhan Maal: ";
+    }
+}
