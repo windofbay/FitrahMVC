@@ -36,10 +36,6 @@ public class HistoryController : Controller
     [HttpPost("history/insert")]
     public IActionResult Insert(HistoryUpsertViewModel viewModel)
     {
-        // var errors = ModelState
-        // .Where(x => x.Value.Errors.Count > 0)
-        // .Select(x => new { x.Key, x.Value.Errors })
-        // .ToArray();
         if (ModelState.IsValid)
         {
             _service.Insert(viewModel);

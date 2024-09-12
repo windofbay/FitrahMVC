@@ -3,8 +3,17 @@
     box-sizing: border-box;
 
 }
+html{
+    font-family:Verdana, Geneva, Tahoma, sans-serif
+}
+body,html{
+    padding: 0;
+    margin: 0;
+    
+}
 .main-body{
-    background-color: lightgrey;
+    /* background-color: lightgrey; */
+    background-image: url("../assets/background-4798051_640.jpg");
 }
 .main-body header{
     background-color: white;
@@ -43,16 +52,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    background-color: greenyellow;
+    /* gap: 0px; */
+    background-color: white;
     overflow-x: auto;
     height: 50px;
 }
 .main-body > .nav a {
-    padding: 10px;
+    padding: 13px;
     text-decoration: none;
     font-size: 20px;
     text-transform: uppercase;
+}
+.main-body > .nav a :visited {
+    background-color: lightgrey;
 }
 
 .grid-container.dashboard{
@@ -66,14 +78,14 @@
     border-radius: 8px;
     margin: 10px;
 }
+.grid-container.history, .grid-container.recap{
+    padding: 5px 50px;
+}
 .grid-container.history h2, .grid-container.recap h2{
-    padding-top: 10px;
-    padding-left: 17px;
-    margin-top: 12px;
-    margin-bottom: 0px;
+    margin-bottom: 20px;
 }
 .filter {
-    padding:15px;
+    margin-bottom: 10px;
 }
 .filter input,select,button{
     padding: 9px;
@@ -122,7 +134,7 @@
 }
 .blue-button.create-button{
     background-color: green;
-    margin-left: 15px;
+    margin-bottom: 10px;
 }
 .blue-button.update-button{
     background-color: green;
@@ -145,11 +157,11 @@
 }
 
 .grid-container table {
-    width: 98%;
+    width: 100%;
     text-align: center;
     border-collapse: collapse;
     font-size: 12px;
-    margin: 12px;
+    /* margin: 0px 35px; */
 }
 .grid-container table i{
     font-size: 15px;
