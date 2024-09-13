@@ -16,7 +16,7 @@ public static class Convertion
     }
     public static string ConvertToRupiahTwoZeros(decimal? money)
     {
-        string rupiah = money?.ToString("C2", CultureInfo.CreateSpecificCulture("id-ID"));
+        string rupiah = money?.ToString("C2", CultureInfo.CreateSpecificCulture("id-ID"))!;
         return rupiah;
     }
     public static string ConvertToIndonesianDate(DateTime date)

@@ -16,9 +16,9 @@ public class AccountRepository : IAccountRepository
     {
         return _dbContext.Accounts.ToList();
     }
-    public Account Get(string username)
+    public async Task<Account> Get(string username)
     {
-        return _dbContext.Accounts.Find(username)
+        return await _dbContext.Accounts.FindAsync(username)
         ??throw new Exception("Akun tidak ditemukan");
     }
 }

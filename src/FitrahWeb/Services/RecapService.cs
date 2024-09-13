@@ -16,9 +16,10 @@ private readonly IHistoryRepository _historyRepository;
         _recapRepository = recapRepository;
     }
 
-    public RecapIndexViewModel Get(string? year)
+    public async Task<RecapIndexViewModel> Get(string? year)
     {
-        var model = _historyRepository.GetByYear(year)
+        var histories =await  _historyRepository.GetByYear(year??"");
+        var model = histories
         .GroupBy(h=>h.Date)
         .OrderBy(g=>g.Key)
         .Select(g => new RecapViewModel() {
@@ -36,33 +37,33 @@ private readonly IHistoryRepository _historyRepository;
         return new RecapIndexViewModel(){
             Recaps = model.ToList(),
             Year = year??"",
-            Years = GetYears(),
-            OverallRecap = GetOverallTotal(year)
+            Years = await GetYears(),
+            OverallRecap = await GetOverallTotal(year)
         };
     }
-    public RecapUpsertViewModel GetRecap(DateTime date)
+    public async Task<RecapUpsertViewModel> GetRecap(DateTime date)
     {
-        var model = _recapRepository.Get(date);
+        var model = await _recapRepository.Get(date);
         return new RecapUpsertViewModel(){
             Date = model.Date
         };
     }
-    public RecapUpsertViewModel Get(DateTime date)
+    public async Task<RecapUpsertViewModel> Get(DateTime date)
     {
-        var model = _recapRepository.Get(date);
+        var model = await  _recapRepository.Get(date);
         return new RecapUpsertViewModel(){
             Date = model.Date,
             ImageName = model.Image 
         };
     }
-    public string Upload(RecapUpsertViewModel ViewModel)
+    public async Task<string> Upload(RecapUpsertViewModel ViewModel)
     { 
-        var model = _recapRepository.Get(ViewModel.Date);
-        model.Image = AddImage(ViewModel.Image);
+        var model = await _recapRepository.Get(ViewModel.Date);
+        model.Image = AddImage(ViewModel.Image!);
         if (model.Image==null){
             return "Extension is not valid, please reupload with .jpg/.jpeg/.png file";
         } else{
-            _recapRepository.Update(model);
+            await _recapRepository.Update(model);
             return "Image Uploaded/Updated";
         }
     }
@@ -71,8 +72,8 @@ private readonly IHistoryRepository _historyRepository;
         List<string> validExtensions = new List<string>(){".jpg",".png",".jpeg"};
         string extension = Path.GetExtension(file.FileName);
         if(!validExtensions.Contains(extension)){
-            return null;
-            // return $"Extension is not valid ({string.Join(',',validExtensions)})";
+            //return null;
+            return $"Extension is not valid ({string.Join(',',validExtensions)})";
         };
         // long size = file.Length;
         // if(size > (5*10000*10000)) return "Maximum size can be 10mb";
@@ -83,9 +84,9 @@ private readonly IHistoryRepository _historyRepository;
 
         return fileName;
     }
-    private List<SelectListItem> GetYears()
+    private async Task<List<SelectListItem>> GetYears()
     {
-        var models = _historyRepository.GetYears();
+        var models = await  _historyRepository.GetYears();
         List<SelectListItem> years = models
         .Select(year => 
             new SelectListItem(){
@@ -96,9 +97,9 @@ private readonly IHistoryRepository _historyRepository;
         .ToList();
         return years;
     }
-    private OverallRecapViewModel GetOverallTotal(string? year)
+    private async Task<OverallRecapViewModel> GetOverallTotal(string? year)
     {
-        var histories = _historyRepository.GetByYear(year);
+        var histories = await _historyRepository.GetByYear(year??"");
         var result = from history in histories
                  group history by history.Date into g
                  select new {

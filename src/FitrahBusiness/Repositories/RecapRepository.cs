@@ -12,21 +12,22 @@ public class RecapRepository : IRecapRepository
         _dbContext = dbContext;
     }
 
-    public Recap Get(DateTime date)
+    public async Task<Recap> Get(DateTime date)
     {
-        return _dbContext.Recaps
-        .Find(date);
-        // ??throw new NullReferenceException($"Recap with date={date} not found");
+        return await _dbContext.Recaps
+        .FindAsync(date)
+    ??throw new NullReferenceException($"Recap with date={date} not found");
     }
-    public void Insert(Recap model)
+    public async Task<Recap> Insert(Recap model)
     {
         _dbContext.Recaps.Add(model);
-        _dbContext.SaveChanges();
+        await _dbContext.SaveChangesAsync();
+        return model;
     }
-    public Recap Update(Recap model)
+    public async Task<Recap> Update(Recap model)
     {
         _dbContext.Recaps.Update(model);
-        _dbContext.SaveChanges();
+        await _dbContext.SaveChangesAsync();
         return model;
     }
 }

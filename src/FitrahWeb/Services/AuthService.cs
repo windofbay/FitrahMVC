@@ -16,7 +16,7 @@ public class AuthService
         _repository = repository;
         _configuration = configuration;
     }
-    private async Task<ClaimsPrincipal> GetPrincipal(AuthLoginViewModel viewModel)
+    private  ClaimsPrincipal GetPrincipal(AuthLoginViewModel viewModel)
     {
         var claims = new List<Claim>(){
             new Claim("username",viewModel.Username),
@@ -40,7 +40,7 @@ public class AuthService
 
     public async Task<AuthenticationTicket> SetLogin(AuthLoginViewModel viewModel)
     {
-        var model = _repository.Get(viewModel.Username);
+        var model = await _repository.Get(viewModel.Username);
         bool isCorrectPassword = BCrypt.Net.BCrypt.Verify(viewModel.Password,model.Password);
         if(!isCorrectPassword) throw new Exception("username atau password salah");
 
@@ -48,7 +48,7 @@ public class AuthService
             Username = model.Username,
             Password = viewModel.Password, //dari input
         };
-        ClaimsPrincipal principal = await GetPrincipal(viewModel);
+        ClaimsPrincipal principal = GetPrincipal(viewModel);
         AuthenticationTicket ticket = GetTicket(principal);
         return ticket;
     }

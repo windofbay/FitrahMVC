@@ -4,7 +4,7 @@ namespace FitrahBusiness.Interfaces;
 
 public interface IRecapRepository
 {
-    Recap Get(DateTime date);
-    void Insert(Recap model);
-    Recap Update(Recap model);
+    Task<Recap> Get(DateTime date);
+    Task<Recap> Insert(Recap model);
+    Task<Recap> Update(Recap model);
 }

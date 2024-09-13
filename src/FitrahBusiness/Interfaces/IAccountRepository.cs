@@ -5,5 +5,5 @@ namespace FitrahBusiness.Interfaces;
 public interface IAccountRepository
 {
     List<Account> Get();
-    Account Get(string username);
+    Task<Account> Get(string username);
 }

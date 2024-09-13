@@ -14,16 +14,16 @@ public class HistoryController : Controller
         _service = service;
     }
     [HttpGet("history")]
-    public ActionResult Get(int page=1, int pageSize=7,string? name="",string? address="", string? period="")
+    public async Task<IActionResult> Get(int page=1, int pageSize=7,string? name="",string? address="", string? period="")
     {
         string currentYear;
         if (name==null && address==null && period==null){
             currentYear = DateTime.Now.Year.ToString();
-            var viewModel = _service.Get(page,pageSize,name,address,currentYear);
+            var viewModel = await _service.Get(page,pageSize,name,address,currentYear);
             return View("Index",viewModel);
         } 
         else {
-            var viewModel = _service.Get(page,pageSize,name,address,period);
+            var viewModel = await _service.Get(page,pageSize,name,address,period);
             return View("Index",viewModel);
         }
     }
@@ -34,28 +34,30 @@ public class HistoryController : Controller
         return View("Upsert",viewModel);
     }
     [HttpPost("history/insert")]
-    public IActionResult Insert(HistoryUpsertViewModel viewModel)
+    public  async Task<IActionResult> Insert(HistoryUpsertViewModel viewModel)
     {
         if (ModelState.IsValid)
         {
-            _service.Insert(viewModel);
+            await _service.Insert(viewModel);
             return RedirectToAction("Get");
         }
         var vm = _service.Get();
         return View("Upsert",vm);
     }
+
+
     [HttpGet("history/{code}/edit")]
-    public IActionResult Get(string code)
+    public async Task<ActionResult> Get(string code)
     {
-        var viewModel = _service.Get(code);
+        var viewModel = await _service.Get(code);
         return View("Upsert",viewModel);
     }
     [HttpPost("history/{code}/edit")]
-    public IActionResult Edit(HistoryUpsertViewModel viewModel)
+    public async Task<IActionResult> Edit(HistoryUpsertViewModel viewModel)
     {
         if (ModelState.IsValid)
         {
-            _service.Update(viewModel);
+            await _service.Update(viewModel);
             return RedirectToAction("Get");
         }
         var vm = _service.Get(viewModel.Code??"");

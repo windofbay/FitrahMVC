@@ -8,7 +8,7 @@ namespace FitrahWeb.Services;
 
 public class HistoryService
 {
-  private readonly IHistoryRepository _historyRepository;
+    private readonly IHistoryRepository _historyRepository;
     private readonly IAccountRepository _accountRepository;
     private readonly IRecapRepository _recapRepository;
     public HistoryService(IHistoryRepository historyRepository, IAccountRepository accountRepository, IRecapRepository recapRepository)
@@ -18,10 +18,10 @@ public class HistoryService
         _recapRepository = recapRepository;
     }
 
-    public HistoryIndexViewModel Get(int page, int pageSize, string? name, string? address, string? year)
+    public async Task<HistoryIndexViewModel> Get(int page, int pageSize, string? name, string? address, string? year)
     {
-        var model = _historyRepository.Get(page,pageSize,name,address,year)
-        .Select(history=>new HistoryViewModel(){
+        var histories =  await _historyRepository.Get(page,pageSize,name??"",address??"",year??"");
+        var model = histories.Select(history=>new HistoryViewModel(){
             MuzakkiName = history.MuzakkiName,
             Address = history.Address,
             Quantity = history.Quantity,
@@ -42,15 +42,15 @@ public class HistoryService
             Pagination = new PaginationViewModel(){
                 PageSize = pageSize,
                 Page = page,
-                TotalRows = _historyRepository.Count(name,address, year)
+                TotalRows = await _historyRepository.Count(name??"",address??"", year??"")
             },
             Name = name??"",
             Address = address??"",
             Year = year??"",
-            Years = GetYears()
+            Years = await GetYears()
         };
     }
-    public void Insert(HistoryUpsertViewModel ViewModel)
+    public async Task<History> Insert(HistoryUpsertViewModel ViewModel)
     {
         //untuk situasi pada waktu pergantian hari
         var recap = _recapRepository.Get(ViewModel.Date);
@@ -58,7 +58,7 @@ public class HistoryService
             var newRecap = new Recap(){
                 Date = ViewModel.Date
             };
-            _recapRepository.Insert(newRecap);
+            await _recapRepository.Insert(newRecap);
         };  
         var model = new History(){
             MuzakkiName  = ViewModel.MuzakkiName,
@@ -77,13 +77,8 @@ public class HistoryService
             Code = GenerateCode(ViewModel.MuzakkiName),
             Date = ViewModel.Date
         };
-        _historyRepository.Insert(model);
-        // return new HistoryViewModel(){
-        //     Code = inserted.Code,
-        //     MuzakkiName = inserted.MuzakkiName,
-        //     Date = Convertion.ConvertToIndonesianDate(inserted.Date),
-        //     AmilUsername = inserted.AmilUsername
-        // };
+        var inserted = await _historyRepository.Insert(model);
+        return inserted;
     }
 
     public HistoryUpsertViewModel Get()
@@ -93,9 +88,9 @@ public class HistoryService
             Amils = GetAmils()
         };
     }
-    public HistoryUpsertViewModel Get(string code)
+    public async Task<HistoryUpsertViewModel> Get(string code)
     {
-        var model = _historyRepository.Get(code);
+        var model = await _historyRepository.Get(code);
         return new HistoryUpsertViewModel(){
             Code = model.Code,
             MuzakkiName = model.MuzakkiName,
@@ -115,9 +110,9 @@ public class HistoryService
             Amils = GetAmils()
         };
     }
-    public HistoryUpsertViewModel Update(HistoryUpsertViewModel ViewModel)
+    public async Task<HistoryUpsertViewModel> Update(HistoryUpsertViewModel ViewModel)
     {
-        var model = _historyRepository.Get(ViewModel.Code);
+        var model = await _historyRepository.Get(ViewModel.Code??"");
         model.MuzakkiName = ViewModel.MuzakkiName;
         model.Quantity = ViewModel.Quantity;
         model.Address = ViewModel.Address;
@@ -132,7 +127,7 @@ public class HistoryService
         model.Note = ViewModel.Note;
         model.AmilUsername = ViewModel.AmilUsername;
         model.Date = ViewModel.Date;
-        var updated = _historyRepository.Update(model);
+        var updated = await _historyRepository.Update(model);
         return new HistoryUpsertViewModel (){
             Code = updated.Code,
             MuzakkiName = updated.MuzakkiName,
@@ -149,9 +144,9 @@ public class HistoryService
             Date = updated.Date
         };
     }
-    private List<SelectListItem> GetYears()
+    private async Task<List<SelectListItem>> GetYears()
     {
-        var models = _historyRepository.GetYears();
+        var models = await  _historyRepository.GetYears();
         List<SelectListItem> years = models
         .Select(year => 
             new SelectListItem(){
@@ -175,9 +170,6 @@ public class HistoryService
         return amils;
     }
     private  Random random = new Random();
-
-
-
     private  string GenerateCode(string name)
     {
         string nameCode = name.Substring(0, Math.Min(name.Length, 3)).ToUpper();

@@ -13,16 +13,16 @@ public class RecapController : Controller
         _service = service;
     }
     [HttpGet("recap")]
-    public IActionResult Get(string? period="")
+    public async Task<IActionResult> Get(string? period="")
     {
         string currentYear;
         if (period==null){
             currentYear = DateTime.Now.Year.ToString();
-            var viewModel = _service.Get(currentYear);
+            var viewModel = await _service.Get(currentYear);
             return View("Index",viewModel);
         } 
         else {
-            var viewModel = _service.Get(period);
+            var viewModel = await _service.Get(period);
             return View("Index",viewModel);
         }
     }
