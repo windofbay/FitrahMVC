@@ -57,7 +57,7 @@
 					<td>
 						<select asp-for="@Model.AmilUsername">
 							<option value="">Pilih Amil</option>
-							@foreach(var amil in Model.Amils){
+							@foreach(var amil in Model.Amils!){
                 				<option value="@amil.Value">@amil.Text</option>
             				}
 						</select>

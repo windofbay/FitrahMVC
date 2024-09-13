@@ -45,7 +45,6 @@ public class HistoryController : Controller
         return View("Upsert",vm);
     }
 
-
     [HttpGet("history/{code}/edit")]
     public async Task<ActionResult> Get(string code)
     {

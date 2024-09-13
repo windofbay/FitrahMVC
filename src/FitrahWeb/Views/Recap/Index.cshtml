@@ -28,7 +28,7 @@
         @{
             if(@Model!=null){
                 <tbody>
-                    @foreach(var recap in Model.Recaps){
+                    @foreach(var recap in Model.Recaps!){
                         <tr>
                             <td>@recap.Date</td>
                             <td></td>
@@ -51,16 +51,18 @@
         }
 		<tfoot>
             <tr>
-                <td></td>
-                <td></td>
-                <td>@Model.OverallRecap.OverallQuantity</td>
-                <td>@Model.OverallRecap.OverallFitrahMoney</td>
-                <td>@Model.OverallRecap.OverallFitrahRice</td>
-                <td>@Model.OverallRecap.OverallFidiyaMoney</td>
-                <td>@Model.OverallRecap.OverallFidiyaRice</td>
-                <td>@Model.OverallRecap.OverallInfaqMoney</td>
-                <td>@Model.OverallRecap.OverallInfaqRice</td>
-                <td>@Model.OverallRecap.OverallMaalMoney</td>
+                @if(@Model!=null){
+                    <td></td>
+                    <td></td>
+                    <td>@Model.OverallRecap!.OverallQuantity</td>
+                    <td>@Model.OverallRecap.OverallFitrahMoney</td>
+                    <td>@Model.OverallRecap.OverallFitrahRice</td>
+                    <td>@Model.OverallRecap.OverallFidiyaMoney</td>
+                    <td>@Model.OverallRecap.OverallFidiyaRice</td>
+                    <td>@Model.OverallRecap.OverallInfaqMoney</td>
+                    <td>@Model.OverallRecap.OverallInfaqRice</td>
+                    <td>@Model.OverallRecap.OverallMaalMoney</td>
+                }
             </tr>
 		</tfoot>
 	</table>
