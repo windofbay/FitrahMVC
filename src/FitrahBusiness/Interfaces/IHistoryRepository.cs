@@ -1,4 +1,5 @@
-﻿using FitrahDataAccess.Models;
+﻿using FitrahBusiness.Objects;
+using FitrahDataAccess.Models;
 
 namespace FitrahBusiness.Interfaces;
 
@@ -13,5 +14,6 @@ public interface IHistoryRepository
     Task<int> Count(string name, string address, string year);
     Task<int> Count(string year);
     Task<List<int>> GetYears();
+    Task<List<GroupHistoryByAddress>> CountHistoryPerAddress();
     //IQueryable<object> GetRecap();
 }

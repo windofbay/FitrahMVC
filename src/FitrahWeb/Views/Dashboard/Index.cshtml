@@ -1,3 +1,118 @@
+@{
+    var countsData = ViewBag.CountsData;
+    var quantities = ViewBag.QuantityData;
+}
+@model OverallRecapViewModel
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <div class="grid-container dashboard">
-    <h1> Assalamualaikum!!!</h1>
+    <div class="container-total">
+        <div class="container-total-data">
+            <h3>@Model.CountAllHistories</h3>
+            <span>Data telah masuk</span>
+        </div>
+        <div id="container-total-fitrah">
+            <h3>Total Fitrah</h3>
+            <div class="total-fitrah">
+                <div class="money">
+                    <img src="../assets/money-png-icon-23.jpg" >
+                    <h4>@Model.OverallFitrahMoney</h4>
+                </div>
+                <div class="rice">
+                    <img src="../assets/bowl-of-rice-icon-6.jpg" >
+                    <h4>@Model.OverallFitrahRice Liter</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-graph">
+        <div id="container1" style="width:100%; height:500px;"></div>
+        <div id="container2" style="width:100%; height:500px;"></div>
+    </div>
 </div>
+
+<script type="text/javascript">
+    $(function () {
+        let countsData = JSON.parse('@Html.Raw(countsData)');
+        let pieData = [];
+        countsData.forEach(function (item) {
+            pieData.push({
+                name:item.Address,
+                y:item.Count
+            })
+        });
+        Highcharts.chart('container1', {
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: 'Jumlah Data Per Wilayah'
+            },
+            plotOptions: {
+                pie:{
+                    minsize:200
+                }
+            },
+            series: [
+                {
+                    name: 'Jumlah per wilayah',
+                    colorByPoint: true,
+                    data: pieData 
+                }
+            ]
+        });
+
+        let quantityData = JSON.parse('@Html.Raw(quantities)');
+        let dates = [];
+        let lineQuantityData = [];
+        
+        quantityData.forEach((item)=>{
+            dates.push(item.Date)
+            lineQuantityData.push(item.TotalQuantity)
+        })
+        console.log(dates);
+        console.log(lineQuantityData);
+        Highcharts.chart('container2', {
+            title: {
+                text: 'Jumlah Jiwa Setiap Hari',
+                align: 'center'
+            },
+
+            yAxis: {
+                title: {
+                text: 'Jumlah Jiwa'
+                }
+            },
+
+            xAxis: {
+                categories: dates
+            },
+
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+
+            series: [{
+                name: 'Jumlah Jiwa',
+                data: lineQuantityData
+            }],
+
+            responsive: {
+                rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom'
+                    }
+                }
+                }]
+            }
+        });
+            });
+</script>

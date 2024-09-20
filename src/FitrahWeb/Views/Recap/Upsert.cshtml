@@ -1,0 +1,11 @@
+@model RecapUpsertViewModel
+
+@if(@Model.ImageName!=null){
+    <img src="../../wwwroot/assets/RecapImages/{@Model.ImageName}">
+} else{
+    <img src="../../wwwroot/assets/RecapImages/OIP.jpg">
+}
+<form method="post" asp-controller="Recap" asp-action="Upload" enctype="multipart/form-data">
+    <input type="file" asp-for="@Model.Image"/>
+    <button type="submit" >Unggah</button>
+</form>

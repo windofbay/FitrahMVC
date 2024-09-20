@@ -50,15 +50,20 @@ public class HistoryService
             Years = await GetYears()
         };
     }
+    public async Task<int> CountAll(string year)
+    {
+        return await _historyRepository.Count(year??"");
+    }
     public async Task<History> Insert(HistoryUpsertViewModel ViewModel)
     {
-        //untuk situasi pada waktu pergantian hari
-        var recap = _recapRepository.Get(ViewModel.Date);
+        var recap = await _recapRepository.Get(ViewModel.Date);
+        //Recap insertedRecap;
         if(recap==null){
             var newRecap = new Recap(){
                 Date = ViewModel.Date
             };
-            await _recapRepository.Insert(newRecap);
+            Recap insertedRecap = await _recapRepository.Insert(newRecap);
+            Console.WriteLine(insertedRecap.Date);
         };  
         var model = new History(){
             MuzakkiName  = ViewModel.MuzakkiName,
@@ -109,6 +114,14 @@ public class HistoryService
             Date = model.Date,
             Amils = GetAmils()
         };
+    }
+    public async Task<List<CountHistoryByAddressViewModel>> GetCountHistoryByAddressViewModel()
+    {
+        var result = await _historyRepository.CountHistoryPerAddress();
+        return result.Select(h=>new CountHistoryByAddressViewModel(){
+            Address = h.Address,
+            Count = h.Count
+        }).ToList();
     }
     public async Task<HistoryUpsertViewModel> Update(HistoryUpsertViewModel ViewModel)
     {

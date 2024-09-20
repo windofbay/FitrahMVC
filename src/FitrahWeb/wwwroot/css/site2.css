@@ -4,7 +4,7 @@
 
 }
 html{
-    font-family:Verdana, Geneva, Tahoma, sans-serif
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
 body,html{
     padding: 0;
@@ -69,9 +69,71 @@ body,html{
 
 .grid-container.dashboard{
     display: flex;
+    gap: 15px;
     justify-content: center;
-    margin-top: 12px;
+    padding: 15px;
+    flex-direction: column;
+    background-color: rgb(247, 241, 241);
 }
+.grid-container.dashboard .container-total{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+.grid-container.dashboard .container-total-data{
+    display: flex;
+    background-color: white;
+    border-radius: 8px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10px;
+    gap: 20px;
+}
+.grid-container.dashboard .container-total-data h3{
+    font-size: 60px;
+    color: green;
+}
+.grid-container.dashboard #container-total-fitrah{
+    display: flex;
+    background-color: white;
+    color: black;
+    font-size: 25px;
+    align-items: center;
+    border-radius: 8px;
+    padding: 10px 5px;
+    justify-content: center;
+    gap: 15px;
+}
+.grid-container.dashboard .container-graph{
+    display: flex;
+    gap: 10px;
+}
+.grid-container.dashboard .total-fitrah{
+    display: flex;
+}
+.grid-container.dashboard #container-total-fitrah img{
+    height: 100px;
+}
+.grid-container.dashboard .money, .grid-container.dashboard .rice{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: white;
+    font-size: 25px;
+    padding: 5px 25px;
+    margin: 0 2px;
+    border-radius: 8px;
+}
+.grid-container.dashboard .money{
+    background-color: red;
+}
+.grid-container.dashboard .rice{
+    background-color: blue;
+}
+
+
+
 
 .main-body main {
     background-color: white;
@@ -90,7 +152,7 @@ body,html{
 .filter input,select,button{
     padding: 9px;
     border-radius: 10px;
-    border: solid 2px lightgreen;;
+    border: solid 2px lightgreen;
 }
 .search-button{
     cursor: pointer;
@@ -161,7 +223,6 @@ body,html{
     text-align: center;
     border-collapse: collapse;
     font-size: 12px;
-    /* margin: 0px 35px; */
 }
 .grid-container table i{
     font-size: 15px;
@@ -178,7 +239,6 @@ body,html{
 }
 .grid-container tbody > tr {
     border-bottom: #3a466c solid 1px;
-    /* text-align: left; */
 }
 .grid-container tbody td {
     padding: 10px;
@@ -284,7 +344,7 @@ body,html{
 }
 .authentication-wrapper > main input {
     display: block;
-    border: 2px solid;
+    border: solid 2px lightgreen;
     outline: none;
     color: green;
     background-color: WHITE;
@@ -313,7 +373,6 @@ body,html{
     font-size: 25px;
     font-weight: normal;
 }
-
 
 /* .authentication-wrapper > main a {
     color: #14acf8;

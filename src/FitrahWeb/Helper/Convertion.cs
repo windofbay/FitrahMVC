@@ -24,4 +24,8 @@ public static class Convertion
         string idDate = date.ToString("dd MMMM yyyy",CultureInfo.CreateSpecificCulture("id-ID"));
         return idDate;
     }
+    private static (int,string) GetValues()
+    {
+        return(10,"Hello");
+    }
 }

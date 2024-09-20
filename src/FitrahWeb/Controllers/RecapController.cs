@@ -1,4 +1,5 @@
 ﻿using FitrahWeb.Services;
+using FitrahWeb.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,5 +26,22 @@ public class RecapController : Controller
             var viewModel = await _service.Get(period);
             return View("Index",viewModel);
         }
+    }
+    [HttpGet("recap/{date}")]
+    public async Task<IActionResult> Get(DateTime date)
+    {
+        var viewModel = await _service.Get(date);
+        return View("Upsert",viewModel);
+    }
+    [HttpPost("recap/insert")]
+    public async Task<IActionResult> Upload(RecapUpsertViewModel viewModel)
+    {
+        if (ModelState.IsValid)
+        {
+            await _service.Upload(viewModel);
+            return RedirectToAction("Get");
+        }
+        var vm = _service.Get(viewModel.Date);
+        return View("Upsert",vm);
     }
 }

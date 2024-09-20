@@ -18,7 +18,7 @@ private readonly IHistoryRepository _historyRepository;
 
     public async Task<RecapIndexViewModel> Get(string? year)
     {
-        var histories =await  _historyRepository.GetByYear(year??"");
+        var histories = await  _historyRepository.GetByYear(year??"");
         var model = histories
         .GroupBy(h=>h.Date)
         .OrderBy(g=>g.Key)
@@ -41,6 +41,19 @@ private readonly IHistoryRepository _historyRepository;
             OverallRecap = await GetOverallTotal(year)
         };
     }
+    public async Task<List<RecapViewModel>> GetQuantityByDate(string? year)
+    {
+        var histories = await  _historyRepository.GetByYear(year??"");
+        var model = histories
+        .GroupBy(h=>h.Date)
+        .OrderBy(g=>g.Key)
+        .Select(g => new RecapViewModel() {
+                Date = Convertion.ConvertToIndonesianDate(g.Key),
+                PlainDate = g.Key,
+                TotalQuantity = g.Sum(h => h.Quantity),
+        });
+        return model.ToList();
+    }
     public async Task<RecapUpsertViewModel> GetRecap(DateTime date)
     {
         var model = await _recapRepository.Get(date);
@@ -50,7 +63,7 @@ private readonly IHistoryRepository _historyRepository;
     }
     public async Task<RecapUpsertViewModel> Get(DateTime date)
     {
-        var model = await  _recapRepository.Get(date);
+        var model = await _recapRepository.Get(date);
         return new RecapUpsertViewModel(){
             Date = model.Date,
             ImageName = model.Image 
@@ -67,18 +80,18 @@ private readonly IHistoryRepository _historyRepository;
             return "Image Uploaded/Updated";
         }
     }
-    private string AddImage(IFormFile file)
+    private string? AddImage(IFormFile file)
     {
         List<string> validExtensions = new List<string>(){".jpg",".png",".jpeg"};
         string extension = Path.GetExtension(file.FileName);
         if(!validExtensions.Contains(extension)){
-            //return null;
-            return $"Extension is not valid ({string.Join(',',validExtensions)})";
+            return null;
+            //return $"Extension is not valid ({string.Join(',',validExtensions)})";
         };
         // long size = file.Length;
         // if(size > (5*10000*10000)) return "Maximum size can be 10mb";
         string fileName = Guid.NewGuid().ToString()+extension;
-        string path = Path.Combine(Directory.GetCurrentDirectory(),"Images");
+        string path = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot/assets/RecapImages");
         using FileStream stream = new FileStream(Path.Combine(path,fileName), FileMode.Create);
         file.CopyTo(stream);
 
@@ -97,7 +110,7 @@ private readonly IHistoryRepository _historyRepository;
         .ToList();
         return years;
     }
-    private async Task<OverallRecapViewModel> GetOverallTotal(string? year)
+    public async Task<OverallRecapViewModel> GetOverallTotal(string? year)
     {
         var histories = await _historyRepository.GetByYear(year??"");
         var result = from history in histories

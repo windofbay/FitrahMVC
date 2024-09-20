@@ -15,8 +15,8 @@ public class RecapRepository : IRecapRepository
     public async Task<Recap> Get(DateTime date)
     {
         return await _dbContext.Recaps
-        .FindAsync(date)
-    ??throw new NullReferenceException($"Recap with date={date} not found");
+        .FindAsync(date);
+        //??throw new NullReferenceException($"Recap with date={date} not found");
     }
     public async Task<Recap> Insert(Recap model)
     {

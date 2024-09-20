@@ -6,12 +6,15 @@
 
   <ItemGroup>
     <Folder Include="Validations\" />
+    <Folder Include="wwwroot\assets\RecapImages\" />
     <Folder Include="wwwroot\js\" />
     <Folder Include="wwwroot\webfonts\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="BCrypt.net-next" Version="4.0.3" />
+    <PackageReference Include="Highsoft.Highcharts" Version="11.4.6.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <PropertyGroup>

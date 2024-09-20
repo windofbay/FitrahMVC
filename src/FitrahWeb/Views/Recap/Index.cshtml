@@ -31,7 +31,7 @@
                     @foreach(var recap in Model.Recaps!){
                         <tr>
                             <td>@recap.Date</td>
-                            <td></td>
+                            <td><a asp-action="Get" asp-route-date="@recap.Date" class="blue-button update-button"><i class="fa fa-file-image"></i></a></td>
                             <td>@recap.TotalQuantity</td>
                             <td>@recap.TotalFitrahMoney</td>
                             <td>@recap.TotalFitrahRice</td>

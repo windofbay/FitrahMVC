@@ -10,4 +10,5 @@ public class OverallRecapViewModel
     public string? OverallInfaqMoney { get; set; }
     public decimal? OverallInfaqRice { get; set; }
     public string? OverallMaalMoney { get; set; }
+    public int? CountAllHistories { get; set; }
 }

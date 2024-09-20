@@ -36,7 +36,7 @@
                     @foreach(var history in Model.Histories){
                         <tr>
                             <td>
-                                <a asp-action="Edit" asp-route-code="@history.Code" class="blue-button update-button">Edit</a>
+                                <a asp-action="Edit" asp-route-code="@history.Code" class="blue-button update-button"><i class="fa fa-pen-square"></i></a>
                             </td>
                             <td>@history.MuzakkiName</td>
                             <td>@history.Address</td>

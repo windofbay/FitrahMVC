@@ -1,6 +1,8 @@
 ﻿using FitrahBusiness.Interfaces;
+using FitrahBusiness.Objects;
 using FitrahDataAccess.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace FitrahBusiness.Repositories;
 
@@ -80,6 +82,19 @@ public class HistoryRepository : IHistoryRepository
        .Select(h=>h.Date.Year)
        .Distinct()
        .ToListAsync();
+    }
+
+    public async Task<List<GroupHistoryByAddress>> CountHistoryPerAddress()
+    {
+        var result = await _dbContext.Histories
+            .GroupBy(h => h.Address)
+            .Select(g => new GroupHistoryByAddress
+            {
+                Address = g.Key, 
+                Count = g.Count()
+            })
+            .ToListAsync();
+        return result;
     }
     // public IQueryable<object> GetRecap()
     // {
